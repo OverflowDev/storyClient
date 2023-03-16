@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink  } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink, createHttpLink   } from '@apollo/client'
+import { createUploadLink } from 'apollo-upload-client'
 import { setContext } from '@apollo/client/link/context'
 
 import AuthRoute from './util/AuthRoute';
@@ -21,7 +22,11 @@ import SingleStory from './components/SingleStory';
 function App() {
 
   const httpLink = createHttpLink({
-    uri: 'http://localhost:5000/story'
+    uri: process.env.REACT_APP_API_URL,
+  })
+  
+  const uploadLink = createUploadLink({
+    uri: process.env.REACT_APP_API_URL,
   })
 
   const authLink = setContext((_, { headers }) => {
@@ -51,10 +56,16 @@ function App() {
     },
   })
 
+  const link = ApolloLink.from([
+    authLink.concat(uploadLink),
+    httpLink,
+  ])
+
   const client = new ApolloClient({
     cache,
+    link
     // cache: new InMemoryCache(),
-    link: authLink.concat(httpLink)
+    // link: authLink.concat(link)
   })
 
   return (

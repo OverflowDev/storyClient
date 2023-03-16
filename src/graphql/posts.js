@@ -8,7 +8,7 @@ export const FETCH_POSTS_QUERY = gql`
             content
             username
             category
-            # imageurl
+            imageUrl
             createdAt
         }
     }
@@ -21,30 +21,46 @@ export const FETCH_POST_QUERY = gql`
             content
             username
             category
-            # imageurl
+            imageUrl
             createdAt
         }
     }
 `
 
+// export const CREATE_POST_MUTATION = gql`
+//     mutation CreatePost(
+//         $title: String!, 
+//         $content: String!, 
+//         $category: ID!,
+//         $image: Upload!
+//         ) {
+//         createPost(
+//             postInput: {
+//             title: $title 
+//             content: $content
+//             category: $category
+//             image: $image
+//             }
+//         ) {
+//             id
+//             title
+//             content
+//             category
+//             username
+//             imageUrl
+//             createdAt
+//         }
+//     }
+// `
 export const CREATE_POST_MUTATION = gql`
-    mutation createPost(
-        $title: String!, 
-        $content: String!, 
-        $category: ID!
-        ) {
-        createPost(
-            postInput: {
-            title: $title 
-            content: $content
-            category: $category
-            }
-        ) {
+    mutation CreatePost($postInput: PostInput!) {
+        createPost(postInput: $postInput) {
             id
             title
             content
             category
             username
+            imageUrl
             createdAt
         }
     }

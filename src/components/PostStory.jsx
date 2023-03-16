@@ -9,30 +9,25 @@ import {FETCH_CATEGORIES_QUERY} from '../graphql/categories'
 
 function PostStory({visible, onClose}) {
 
-  const [err, setErr] = useState(null)
+  const [err, setErr] = useState({})
 
-  const [imageFile, setImageFile] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null)
+
+  // const [imageFile, setImageFile] = useState(null)
+
 
   const [formData, setFormData] = useState({
     title: '',
     content: '',
-    category: ''
+    category: '',
+    image: ''
   })
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0]
-    setImageFile(file)
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file)
-  }
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0]
+  //   setImageFile(file)
+  //   setFormData({ ...formData, image: file })
+  // }
 
-  const handleRemoveImage = (e) => {
-    setImagePreview(null)
-  }
 
   const onChange = (e) => {
     setFormData({
@@ -44,7 +39,7 @@ function PostStory({visible, onClose}) {
 // Fetch category 
 const { loading: categoriesLoading, error: categoriesError, data: categoriesData } = useQuery(FETCH_CATEGORIES_QUERY)
 
-const [createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
+const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
   refetchQueries: [{ query: FETCH_CATEGORIES_QUERY }],
 
   update(cache, { data: {createPost} }) {
@@ -59,6 +54,7 @@ const [createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
                 title
                 content
                 category
+                imageUrl
               }
             `
           })
@@ -69,31 +65,40 @@ const [createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
   }, 
   onCompleted(){
     onClose()
-    toast.success("Quote saved successfully!")
-  }
+    toast.success("Post saved successfully!")
+  },
 })
+
+console.log(error)
 
 
 const onSubmit = async (e) => {
   e.preventDefault();
   try {
+    const { title, content, category, image } = formData
     await createPost({
-      variables: { 
-        title: formData.title, 
-        content: formData.content, 
-        category: formData.category 
+      variables: { postInput:{
+        title,
+        content,
+        category,
+        image
+        }
       }
-    });
+    })
+
     setFormData({
       title: '',
       content: '',
-      category: ''
-    });
+      category: '',
+      image: ''
+    })
+    // setImageFile(null)
+    
     setErr(null)
     onClose()
   } catch (error) {
     setErr(error)
-  }
+  } 
 }
 
 
@@ -176,7 +181,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
               value={formData.content}
               name='content'
               onChange={onChange}
-              rows="6"
+              rows="5"
               placeholder="Your Story"
               className="w-full rounded py-3 px-[14px] text-gray-800 text-base border border-gray-700 resize-none outline-none focus-visible:shadow-none focus:border-primary"
             ></textarea>
@@ -184,43 +189,21 @@ if (categoriesError) return <p>Error loading categories.</p>;
 
           {/* Image  */}
           <div className="mb-6 ">
-            <div className="w-full md:w-full relative grid grid-cols-1 md:grid-cols-3 border border-gray-300 bg-gray-100 rounded-lg">
-              {/* select image and remove image  */}
-              <div className="rounded-l-lg p-4 bg-gray-200 flex flex-col justify-center items-center border-0 border-r border-gray-300 ">
-                <label
-                  className="cursor-pointer hover:opacity-80 inline-flex items-center shadow-md my-2 px-2 py-2 bg-gray-900 text-gray-50 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
-                  htmlFor="restaurantImage"
-                >
-                  Select image
-                  <input
-                    id="restaurantImage"
-                    className="text-sm cursor-pointer w-36 hidden"
-                    type="file"
-                    onChange={handleImageUpload}
-                  />
-                </label>
-                <button
-                  className="inline-flex items-center shadow-md my-2 px-2 py-2 bg-gray-900 text-gray-50 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
-                  onClick={handleRemoveImage}
-                >
-                  Remove image
-                </button>
-              </div>
-              {/* Preview Image  */}
-              <div
-                className="relative order-first md:order-last h-28 md:h-auto flex justify-center items-center border border-dashed border-gray-400 col-span-2 m-2 rounded-lg bg-no-repeat bg-center bg-origin-padding bg-cover bg-contain"
-                style={{ backgroundImage: `url(${imagePreview})` }}
-              >
-                {!imagePreview && (
-                  <span className="text-gray-400 opacity-75 flex items-center space-x-2">
-                    <ion-icon name="image-outline" size='large'></ion-icon>
-                    <span className="mt-2 text-sm font-medium">
-                      No image selected
-                    </span>
-                  </span>
-                )}
-              </div>
-            </div>
+            {/* <input type="file" name="image" onChange={handleImageChange} /> */}
+            <label
+              htmlFor="title"
+              className="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Image Link
+            </label>
+            <input 
+              type="text" 
+              name='image' 
+              value={formData.image} 
+              onChange={onChange} 
+              placeholder="https://Image-link"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
           </div>
 
           {/* Button  */}
@@ -229,7 +212,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
               type='submit'
               className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
             >
-              Post Story
+              {loading ? "Posting...": 'PostStory'}
             </button>
             <br />
           </div>
@@ -239,6 +222,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
               {error?.graphQLErrors[0].message}
             </div>
           )}
+
         </form>
 
       </div>

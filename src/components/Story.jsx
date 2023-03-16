@@ -26,12 +26,12 @@ function Story({post}) {
     <div className='py-2' >
       <div className='flex justify-center'>
 
-        <Link to={`/story/${id}`} className="rounded-xl border p-5 shadow-md md:w-9/12 w-11/12 bg-white hover:bg-gray-50">
+        <div className="rounded-xl border p-5 shadow-md md:w-9/12 w-11/12 bg-white hover:bg-gray-50">
           
           <div className="flex w-full items-center justify-between border-b pb-3">
             <div className="flex items-center space-x-3">
               <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
-              <div className="text-lg font-bold text-slate-700">{username}</div>
+              <div className="text-lg font-bold text-slate-700 capitalize">{username}</div>
             </div>
             <div className="flex items-center space-x-8">
               <div className="text-xs text-neutral-500">• {moment(createdAt).fromNow(true)}</div>
@@ -39,8 +39,9 @@ function Story({post}) {
           </div>
 
           <div className="mt-4 mb-6">
-            <div className="mb-3 text-xl font-bold">{title}</div>
-            <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0,25) + (content?.length > 1 ? ' ...' : '')}}></div>
+            <Link to={`/story/${id}`} className="mb-3 text-xl font-bold">{title}</Link>
+            {/* <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0,25) + (content?.length > 1 ? `<Link>Read More</Link>` : '')}}></div> */}
+            <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0, 25) + (content?.length > 1 ? ' ...' : '')}}></div>
           </div>
 
           {/* Delete button  */}
@@ -48,7 +49,10 @@ function Story({post}) {
           <button className="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">{category}</button>
             {user && user.username === username && 
               <button 
-                onClick={() => setShowDeleteButton(true)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setShowDeleteButton(true)
+                }}
                 className='flex items-center space-x-2 text-red-600'
                 >
                   <ion-icon name="trash-outline"></ion-icon>
@@ -56,7 +60,7 @@ function Story({post}) {
             }
           </div>
 
-        </Link>
+        </div>
 
       </div>
       {/* delete button  */}

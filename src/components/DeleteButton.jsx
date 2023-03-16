@@ -13,7 +13,7 @@ function DeleteButton({postId, callback, onClose, visible}) {
   const navigate = useNavigate()
   const client = useApolloClient()
 
-    const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+    const [deletePost, {loading}] = useMutation(DELETE_POST_MUTATION, {
       refetchQueries: [{ query: FETCH_POSTS_QUERY }],
       onCompleted: (data) => {
         onClose()
@@ -28,7 +28,7 @@ function DeleteButton({postId, callback, onClose, visible}) {
         if(location.pathname === `/story/${deletedPostId}`){
           navigate('/')
         }
-        toast.success("Quote deleted successfully!")
+        toast.success("Post deleted successfully!")
 
       },
 
@@ -90,7 +90,7 @@ function DeleteButton({postId, callback, onClose, visible}) {
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                     <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                         <button onClick={handleDelete} type="button" className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Delete
+                          {loading ? 'Deleting...' : 'Delete'}
                         </button>
                     </span>
                     <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">

@@ -55,21 +55,34 @@ function Stories() {
         ) :(
             <div>
                 <h1 className='text-2xl p-4 uppercase font-semibold text-center'>Stories</h1>
-                <div className='flex justify-center m-4 overflow-y-hidden scrollbar-hide space-x-2'>
-                    {filterData.map((val, i) => (
-                        <button
-                            key={i}
-                            onClick={fetchFilterData(val)}
-                            className={`py-2 px-4 rounded-md text-center uppercase w-fit ${active === val ? 'bg-gray-400 text-gray-900' : 'bg-gray-200' }`}
-                        >
-                            {val}
-                        </button>
-                    ))}
-                </div>
+                {currentData.length > 0 ? (
+                    <div className='flex items-center mb-4 break-normal m-4 overflow-y-hidden scrollbar-hide space-x-2'>
+                        {filterData.map((val, i) => (
+                            <button
+                                key={i}
+                                onClick={fetchFilterData(val)}
+                                className={`py-2 px-4 rounded-md whitespace-nowrap uppercase w-fit ${active === val ? 'bg-gray-400 text-gray-900' : 'bg-gray-200' }`}
+                            >
+                                {val}
+                            </button>
+                        ))}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+
                 <div>
-                    {currentData.map((post) => (
-                        <Story key={post.id} post={post}  />
-                    ))}
+                    {currentData.length > 0 ? (
+                        <div>
+                            {currentData.map((post) => (
+                                <Story key={post.id} post={post}  />
+                            ))}
+                        </div>
+                    ): (
+                        <div className='text-center tracking-wider font-semibold'>
+                            No story at the moment, check back later
+                        </div>
+                    )}
                 </div>
             </div>
         )}
