@@ -22,6 +22,8 @@ function SingleStory() {
 
     const post = data && data.getPost
 
+    const paragraphs = post?.content.split("\n\n")
+
     if(error) console.log(error)
 
 
@@ -31,11 +33,11 @@ function SingleStory() {
         {loading ? (
             <div>Loading...</div>
         ) : (
-            <div className="mt-10">
-                <div className='ml-24'>
-                    <Link to='/' className='py-2 px-3 w-fit flex items-center bg-gray-300 border-none rounded-md'>
+            <div className="md:mt-10">
+                <div className='md:ml-24'>
+                    <Link to='/' className='py-2 px-3 m-4 w-fit space-x-3 flex justify-start items-center bg-gray-300 hover:bg-gray-400 shadow-inner border-none rounded-md'>
                         <ion-icon name="arrow-undo-outline"></ion-icon>
-                        Back
+                        <span>Back</span>
                     </Link>
                 </div>
                 <div className="rounded-2xl mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative h-96">
@@ -58,9 +60,13 @@ function SingleStory() {
                     </div>
                 </div>
 
-                <div className="px-4 text-center lg:px-0 mt-12 text-gray-700 flex justify-center w-screen mx-auto text-lg leading-relaxed">
+                <div className="px-4 text-center lg:px-24 mt-12 text-gray-700 flex justify-center w-screen mx-auto text-lg leading-relaxed">
                     <p className="pb-6">
-                        {post.content}
+                        {paragraphs.map((paragraph, index) => (
+                            <div key={index} className="mb-4">
+                                <p>{paragraph}</p>
+                            </div>
+                        ))}
                     </p>
 
                 </div>
