@@ -1,6 +1,6 @@
 import {useContext, useState} from 'react'
 
-import AuthContext from '../context/AuthContext';
+// import AuthContext from '../context/AuthContext';
 
 import PostStory from '../components/PostStory'
 import LatestStory from '../components/LatestStory';
@@ -8,7 +8,7 @@ import Landing from '../layouts/Landing';
 
 function Home() {
 
-  const {user} = useContext(AuthContext)
+  // const {user} = useContext(AuthContext)
 
   const [showNewPostButton, setShowNewPostButton] = useState(false)
   const handleOnClose = () => setShowNewPostButton(false)
