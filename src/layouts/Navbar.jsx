@@ -20,7 +20,7 @@ function Navbar() {
 
   return (
     <div className=''>
-    <nav className="bg-gray-100 py-2">
+    <nav className="bg-blue-100 py-2">
         <div className="md:px-14 px-4 flex items-center justify-between text-sm ">
             
             {/*  Menu  */}
@@ -40,21 +40,24 @@ function Navbar() {
 
             {/* Large screen  */}
             <ul className='lg:flex py-2 text-lg hidden items-center gap-8'>
-                <Link to='about' className='inline-block uppercase'>
-                    About Us
+                <Link to='/' className='inline-block uppercase'>
+                    Home
                 </Link>
                 <Link to='story' className='inline-block uppercase'>
                     Stories
+                </Link>
+                <Link to='about' className='inline-block uppercase'>
+                    About Us
                 </Link>
             </ul>
 
             {!user ? (
                 <ul className='lg:flex hidden uppercase items-center space-x-4'>
                     {/* auth  */}
-                    <Link to='/login' className='py-2 flex items-center rounded-md px-4 bg-gray-200 hover:bg-gray-400 shadow-inner'>
+                    <Link to='/login' className='py-2 flex items-center rounded-md px-4 bg-blue-200 hover:bg-blue-400 shadow-inner'>
                         <h1 className='tracking-wider font-semibold'>LOGIN</h1>
                     </Link>
-                    <Link to='/register' className='py-2 flex items-center px-4 rounded-md text-white bg-gray-400 hover:text-black hover:bg-gray-200 shadow-inner'>
+                    <Link to='/register' className='py-2 flex items-center px-4 rounded-md text-white bg-blue-600 hover:text-black hover:bg-gray-200 shadow-inner'>
                         <h1 className='tracking-wider font-semibold'>REGISTER</h1>
                     </Link>
                 </ul>
@@ -66,7 +69,7 @@ function Navbar() {
                     </div>
                     <button 
                         onClick={handleLogout}
-                        className='py-2 px-3 flex items-center rounded-md text-white bg-red-300 hover:text-black hover:bg-gray-200 shadow-inner'>
+                        className='py-2 px-3 flex items-center rounded-md text-white bg-red-500 hover:text-black hover:bg-red-200 shadow-inner'>
                         <ion-icon name="log-out-outline"></ion-icon>
                     </button>
                 </ul>
@@ -76,7 +79,7 @@ function Navbar() {
             {/* Mobile Menu  */}
             <ul className={`
                dark:text-white text-dark lg:hidden dark:bg-dark bg-white absolute bottom-0 w-full h-screen py-24 px-12
-                delay-100 duration-500 z-10 ${open ? 'left-0' : 'left-[-100%]'}
+                delay-100 duration-500 z-30 ${open ? 'left-0' : 'left-[-100%]'}
             `}>
                 <div className='flex flex-col'>
                     <Link to='about' className='py-3 text-center px-3 text-2xl' onClick={closeMenu}>

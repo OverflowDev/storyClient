@@ -14,13 +14,13 @@ function PostStory({visible, onClose}) {
 
   // const [imageFile, setImageFile] = useState(null)
 
-
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     category: '',
     image: ''
   })
+
 
   // const handleImageChange = (e) => {
   //   const file = e.target.files[0]
@@ -30,11 +30,15 @@ function PostStory({visible, onClose}) {
 
 
   const onChange = (e) => {
+    const { name, value } = e.target
+
     setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
+      ...formData,
+      // [e.target.name]: e.target.value
+      [name]: value
     })
-}
+
+  }
 
 // Fetch category 
 const { loading: categoriesLoading, error: categoriesError, data: categoriesData } = useQuery(FETCH_CATEGORIES_QUERY)
@@ -68,8 +72,6 @@ const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
     toast.success("Post saved successfully!")
   },
 })
-
-console.log(error)
 
 
 const onSubmit = async (e) => {
@@ -204,6 +206,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
               placeholder="https://Image-link"
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
+            <div className='text-red-500'>Note: Make sure you paste right link</div>
           </div>
 
           {/* Button  */}

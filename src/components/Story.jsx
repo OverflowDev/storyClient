@@ -26,7 +26,7 @@ function Story({post}) {
     <div className='py-2' >
       <div className='flex justify-center'>
 
-        <div className="rounded-xl border p-5 shadow-md md:w-9/12 w-11/12 bg-white hover:bg-gray-50">
+        <div className="rounded-xl border p-5 shadow-md md:w-9/12 w-11/12 bg-white hover:bg-blue-50">
           
           <div className="flex w-full items-center justify-between border-b pb-3">
             <div className="flex items-center space-x-3">

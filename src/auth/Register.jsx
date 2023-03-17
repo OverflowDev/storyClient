@@ -76,7 +76,7 @@ return (
                 </div>
             ): (
                 <div className="container py-8">
-                <div className="md:w-96 mx-auto bg-gray-200 rounded shadow">
+                <div className="md:w-96 mx-auto bg-blue-100 rounded shadow">
 
                     <div className="md:mx-16 py-4 px-8 text-black text-xl text-center font-bold border-b border-grey-500">Regstration</div>
 
@@ -123,7 +123,7 @@ return (
                             <div className="mb-4 flex justify-center">
                                 <button 
                                     disabled={loading}
-                                    type='submit' className="mb-2 mx-16 rounded-md py-2 px-24 bg-gray-400 hover:bg-gray-500">
+                                    type='submit' className="mb-2 mx-16 rounded-md py-2 px-24 bg-blue-400 hover:bg-blue-500">
                                     Save
                                 </button>
                             </div>

@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useQuery } from '@apollo/client';
+
+import AuthContext from '../context/AuthContext';
 
 import {FETCH_POSTS_QUERY} from '../graphql/posts'
 
 import Story from './Story';
 import Pagination from './Pagination';
 
+import PostStory from '../components/PostStory'
+
 function Stories() {
+
+    const {user} = useContext(AuthContext)
 
     const {data, loading, error} = useQuery(FETCH_POSTS_QUERY)
 
     const [getData, setGetData] = useState([])
     const [active, setActive] = useState('All')
+
+    const [showNewPostButton, setShowNewPostButton] = useState(false)
+    const handleOnClose = () => setShowNewPostButton(false)
 
     // Filter 
     const filterData = [ ...new Set(data?.getPosts.map((Val) => Val.category )), 'All']
@@ -47,7 +56,18 @@ function Stories() {
     if (error) console.log(error)
 
   return (
-    <div className='mt-2 w-full' >
+    <div className='mt-2 w-full md:px-24 px-6 ' >
+        {/* new post  */}
+        <div className='flex justify-end'>
+          {user && <button 
+            onClick={() => setShowNewPostButton(true)}
+            className='flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-100 rounded-md space-x-2 shadow-inner text-black'
+            >
+              <ion-icon name="add-circle-outline"></ion-icon>
+              <span className='font-semibold'>New Story</span>
+            </button>
+          }
+        </div>
         {loading ? (
             <div>
                 Loading...
@@ -55,21 +75,24 @@ function Stories() {
         ) :(
             <div>
                 <h1 className='text-2xl p-4 uppercase font-semibold text-center'>Stories</h1>
-                {currentData.length > 0 ? (
-                    <div className='flex items-center mb-4 break-normal m-4 overflow-y-hidden scrollbar-hide space-x-2'>
-                        {filterData.map((val, i) => (
-                            <button
-                                key={i}
-                                onClick={fetchFilterData(val)}
-                                className={`py-2 px-4 rounded-md whitespace-nowrap uppercase w-fit ${active === val ? 'bg-gray-400 text-gray-900' : 'bg-gray-200' }`}
-                            >
-                                {val}
-                            </button>
-                        ))}
-                    </div>
-                ) : (
-                    <div></div>
-                )}
+                <div className='flex items-center'>
+                    <h1 className='uppercase'>Filter Stories</h1>
+                    {currentData.length > 0 ? (
+                        <div className='flex items-center mb-4 break-normal m-4 overflow-y-hidden scrollbar-hide space-x-2'>
+                            {filterData.map((val, i) => (
+                                <button
+                                    key={i}
+                                    onClick={fetchFilterData(val)}
+                                    className={`py-2 px-4 rounded-md whitespace-nowrap uppercase w-fit ${active === val ? 'bg-gray-400 text-gray-900' : 'bg-gray-200' }`}
+                                >
+                                    {val}
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
 
                 <div>
                     {currentData.length > 0 ? (
@@ -99,6 +122,9 @@ function Stories() {
             />
 
         </div>
+
+      <PostStory onClose={handleOnClose} visible={showNewPostButton}/>
+
     </div>
   )
 }

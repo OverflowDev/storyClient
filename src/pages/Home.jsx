@@ -3,7 +3,7 @@ import {useContext, useState} from 'react'
 import AuthContext from '../context/AuthContext';
 
 import PostStory from '../components/PostStory'
-import Stories from '../components/Stories'
+import LatestStory from '../components/LatestStory';
 
 function Home() {
 
@@ -19,13 +19,14 @@ function Home() {
         <div className='flex justify-end'>
           {user && <button 
             onClick={() => setShowNewPostButton(true)}
-            className='flex items-center px-4 py-2 bg-gray-200 rounded-md space-x-2 shadow-inner text-black'
+            className='flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-100 uppercase rounded-md space-x-2 shadow-inner text-black'
             >
               <ion-icon name="add-circle-outline"></ion-icon>
-              <span className='font-semibold'>New Story</span>
-            </button>}
+              <span className='font-semibold'>ADD NEW</span>
+            </button>
+          }
         </div>
-        <Stories />
+        <LatestStory />
       </div>
       
       <PostStory onClose={handleOnClose} visible={showNewPostButton}/>

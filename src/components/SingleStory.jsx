@@ -35,14 +35,22 @@ function SingleStory() {
         ) : (
             <div className="md:mt-10">
                 <div className='md:ml-24'>
-                    <Link to='/' className='py-2 px-3 m-4 w-fit space-x-3 flex justify-start items-center bg-gray-300 hover:bg-gray-400 shadow-inner border-none rounded-md'>
+                    <Link to='/' className='py-2 px-3 m-4 w-fit space-x-3 flex justify-start items-center bg-blue-300 hover:bg-blue-400 shadow-inner border-none rounded-md'>
                         <ion-icon name="arrow-undo-outline"></ion-icon>
                         <span>Back</span>
                     </Link>
                 </div>
                 <div className="rounded-2xl mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative h-96">
-                    <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-gradient-to-b from-blue-800/5 to-dark-alt bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-brightness-50 bg-opacity-60"></div>
-                    <img src={post.imageUrl} className="absolute left-0 top-0 w-full h-full z-0 object-cover " alt='trs' />
+                    <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-gradient-to-b from-blue-800/10 to-blue-800/5 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-brightness-50 bg-opacity-60"></div>
+                    <img 
+                        src={post.imageUrl} 
+                        onError={(e) => {
+                            e.target.onerror = null; 
+                            e.target.src = 'https://media.istockphoto.com/id/515807051/photo/short-story-in-wood-type.jpg?s=612x612&w=0&k=20&c=h36rZbsPgLPGNZlPa139WhglQXDRfFRxKRNSDyk7jR4=';
+                        }} 
+                        className="absolute left-0 top-0 w-full h-full z-0 object-cover " 
+                        alt='postImage' 
+                    />
                     <div className="p-4 absolute bottom-0 left-0 z-20">
                         <div className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2 rounded-md">
                             {post.category}
