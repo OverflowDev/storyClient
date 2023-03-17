@@ -19,7 +19,7 @@ function Navbar() {
   }
 
   return (
-    <div className='sticky top-0 z-50'>
+    <div className=''>
         <nav className="bg-blue-100 py-2 ">
             <div className="md:px-14 px-4 flex items-center justify-between text-sm ">
                 
