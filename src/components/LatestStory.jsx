@@ -24,7 +24,7 @@ function LatestStory() {
         </div>
     ) :(
         <div>
-            <h1 className='text-2xl p-4 uppercase font-semibold text-center'>Top Stories</h1>
+            {/* <h1 className='text-2xl p-4 uppercase font-semibold text-center'>Top Stories</h1> */}
             <div>
                 {newData.length > 0 ? (
                     <div>
