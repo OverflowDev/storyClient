@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 
 import { toast } from 'react-hot-toast'
 
+// import Logo from '../assets/logo.png'
+import Ask from '../assets/ask.png'
+import Tales from '../assets/tales.png'
 
 import AuthContext from '../context/AuthContext'
 
@@ -25,10 +28,11 @@ function Navbar() {
                 
                 {/*  Menu  */}
                 <div className='z-50 lg:w-auto w-full flex items-center justify-between '>
-                    {/* DarkMode  */}
                     <Link to='/' onClick={closeMenu}>
                         <div className='flex items-center'>
-                            <h2 className='tracking-wider text-md uppercase font-bold'>Story - Telling</h2>
+                            <img src={Ask} alt="Logo" className='bg-cover h-12' />
+                            <img src={Tales} alt="Logo" className='bg-cover h-12 ' />
+                            {/* <h2 className='tracking-wider text-md font-bold'>AskTales</h2> */}
                         </div>
                     </Link>
                     <div className='flex items-center space-x-2 lg:hidden'>
@@ -40,14 +44,17 @@ function Navbar() {
 
                 {/* Large screen  */}
                 <ul className='lg:flex py-2 text-lg hidden items-center gap-8'>
-                    <Link to='/' className='inline-block uppercase'>
+                    <Link to='/' className='inline-block uppercase font-semibold tracking-wide hover:tracking-widest hover:text-blue-800'>
                         Home
                     </Link>
-                    <Link to='story' className='inline-block uppercase'>
+                    <Link to='story' className='inline-block uppercase font-semibold tracking-wide hover:tracking-widest hover:text-blue-800'>
                         Stories
                     </Link>
-                    <Link to='about' className='inline-block uppercase'>
+                    <Link to='about' className='inline-block uppercase font-semibold tracking-wide hover:tracking-widest hover:text-blue-800'>
                         About Us
+                    </Link>
+                    <Link to='contact' className='inline-block uppercase font-semibold tracking-wide hover:tracking-widest hover:text-blue-800'>
+                        Contact Us
                     </Link>
                 </ul>
 
@@ -82,6 +89,9 @@ function Navbar() {
                     delay-100 duration-500 z-30 ${open ? 'left-0' : 'left-[-100%]'}
                 `}>
                     <div className='flex flex-col'>
+                        <Link to='contact' className='py-3 text-center px-3 text-2xl' onClick={closeMenu}>
+                            Contact Us
+                        </Link>
                         <Link to='about' className='py-3 text-center px-3 text-2xl' onClick={closeMenu}>
                             About Us
                         </Link>

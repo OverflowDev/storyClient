@@ -6,6 +6,8 @@ export const FETCH_POSTS_QUERY = gql`
             id
             title
             content
+            chapter
+            name
             username
             category
             imageUrl
@@ -19,6 +21,8 @@ export const FETCH_POST_QUERY = gql`
             id
             title
             content
+            chapter
+            name
             username
             category
             imageUrl
@@ -58,7 +62,9 @@ export const CREATE_POST_MUTATION = gql`
             id
             title
             content
+            chapter
             category
+            name
             username
             imageUrl
             createdAt

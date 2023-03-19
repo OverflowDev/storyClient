@@ -17,6 +17,7 @@ function PostStory({visible, onClose}) {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
+    chapter: '',
     category: '',
     image: ''
   })
@@ -57,6 +58,8 @@ const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
                 id
                 title
                 content
+                chapter
+                name
                 category
                 imageUrl
               }
@@ -77,11 +80,12 @@ const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
 const onSubmit = async (e) => {
   e.preventDefault();
   try {
-    const { title, content, category, image } = formData
+    const { title, content,chapter, category, image } = formData
     await createPost({
       variables: { postInput:{
         title,
         content,
+        chapter,
         category,
         image
         }
@@ -91,6 +95,7 @@ const onSubmit = async (e) => {
     setFormData({
       title: '',
       content: '',
+      chapter: '',
       category: '',
       image: ''
     })
@@ -121,7 +126,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
         {/* Close button  */}
         <button
           onClick={onClose}
-          className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+          className="flex-shrink-0 flex items-center justify-start h-12 w-12 px-2 rounded-full sm:mx-0 sm:h-10 sm:w-10"
         >
           <svg className="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -130,10 +135,10 @@ if (categoriesError) return <p>Error loading categories.</p>;
 
         <form 
           onSubmit={onSubmit}
-          className="py-6 px-9"
+          className="py-2 px-9"
         >
           {/* title  */}
-          <div className="mb-5">
+          <div className="mb-2">
             <label
               htmlFor="title"
               className="mb-3 block text-base font-medium text-[#07074D]"
@@ -152,7 +157,7 @@ if (categoriesError) return <p>Error loading categories.</p>;
           </div>
 
           {/* Category  */}
-          <div className="mb-5">
+          <div className="mb-2">
             <label htmlFor="categories" className="mb-3 block text-base font-medium text-[#07074D]">Select an option</label>
             <select 
               name='category'
@@ -183,10 +188,29 @@ if (categoriesError) return <p>Error loading categories.</p>;
               value={formData.content}
               name='content'
               onChange={onChange}
-              rows="5"
+              rows="3"
               placeholder="Your Story"
               className="w-full rounded py-3 px-[14px] text-gray-800 text-base border border-gray-700 resize-none outline-none focus-visible:shadow-none focus:border-primary"
             ></textarea>
+          </div>
+
+           {/* Chapter  */}
+           <div className="mb-5">
+            <label
+              htmlFor="title"
+              className="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Chapter
+            </label>
+            <input
+              required
+              name='chapter'
+              onChange={onChange}
+              value={formData.chapter}
+              type="text"
+              placeholder="Chapter"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
           </div>
 
           {/* Image  */}

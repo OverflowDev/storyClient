@@ -17,10 +17,10 @@ function LatestStory() {
     if(error) return null
 
   return (
-    <div className='mt-2 w-full md:px-24 px-6 ' >
+    <div className='mt-2 w-full md:px-24 ' >
     {loading ? (
-        <div>
-            Loading...
+        <div className='flex justify-center'>
+            <div className="w-12 h-12 rounded-full border-4 border-blue-800 animate-spin"></div>
         </div>
     ) :(
         <div>
@@ -38,7 +38,7 @@ function LatestStory() {
                                             <div className="flex w-full items-center justify-between border-b pb-3">
                                                 <div className="flex items-center space-x-3">
                                                     <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
-                                                    <div className="text-lg font-bold text-slate-700 capitalize">{post.username}</div>
+                                                    <div className="text-lg font-bold text-slate-700 capitalize">{post.name}</div>
                                                 </div>
                                                 <div className="flex items-center space-x-8">
                                                     <div className="text-xs text-neutral-500">• {moment(post.createdAt).fromNow(true)}</div>
@@ -47,6 +47,7 @@ function LatestStory() {
 
                                             <div className="mt-4 mb-6">
                                                 <Link to={`/story/${post.id}`} className="mb-3 text-xl font-bold hover:text-blue-500">{post.title}</Link>
+                                                <div className="mb-3 text-md font-semibold capitalize">{post.chapter}</div>
                                                 <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: post.content?.substr(0, 200) + (post.content?.length > 1 ? ' ...' : '')}}></div>
                                             </div>
 
@@ -58,7 +59,7 @@ function LatestStory() {
                         ))}
                     </div>
                 ): (
-                    <div className='text-center tracking-wider font-semibold'>
+                    <div className='text-center tracking-wider font-normal'>
                         No story at the moment, check back later
                     </div>
                 )}

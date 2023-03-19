@@ -58,6 +58,9 @@ function SingleStory() {
                         <h2 className="text-4xl font-semibold text-gray-100 leading-tight capitalize">
                             {post.title}
                         </h2>
+                        <h2 className="text-4xl font-semibold text-gray-100 leading-tight capitalize">
+                            {post.chapter}
+                        </h2>
                         <div className="flex mt-3">
                             <img src="https://i.pravatar.cc/32" className="h-10 w-10 rounded-full mr-2 object-cover" alt='img' />
                             <div>
