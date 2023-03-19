@@ -46,7 +46,7 @@ function LatestStory() {
                                             </div>
 
                                             <div className="mt-4 mb-6">
-                                                <Link to={`/story/${post.id}`} className="mb-3 text-xl font-bold hover:text-blue-500">{post.title}</Link>
+                                                <Link to={`/story/${post.id}`} className="mb-3 text-xl font-bold hover:text-blue-500 uppercase">{post.title}</Link>
                                                 <div className="mb-3 text-md font-semibold capitalize">{post.chapter}</div>
                                                 <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: post.content?.substr(0, 200) + (post.content?.length > 1 ? ' ...' : '')}}></div>
                                             </div>
