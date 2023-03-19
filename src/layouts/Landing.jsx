@@ -10,7 +10,7 @@ function Landing() {
                     <h2 className="text-4xl font-bold sm:text-5xl">
                         Read a Good Story
                         <span className="hidden sm:block text-xl">
-                            on Story-Telling
+                            on AskTales
                         </span>
                     </h2>
                     <Link to='story' className="inline-flex text-white items-center px-6 py-3 font-medium bg-blue-500 rounded-lg hover:opacity-75" href="https://twitter.com/sahilnetic">
