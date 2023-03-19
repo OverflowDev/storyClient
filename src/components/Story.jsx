@@ -41,7 +41,7 @@ function Story({post}) {
 
           <div className="mt-4 mb-6">
             <Link to={`/story/${id}`} className="mb-3 text-xl font-bold hover:text-blue-500 uppercase">{title}</Link>
-            <div className="mb-3 text-md font-semibold capitalize hover:text-blue-500">{chapter}</div>
+            <div className="mb-3 text-md font-semibold capitalize text-blue-500">{chapter}</div>
             {/* <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0,25) + (content?.length > 1 ? `<Link>Read More</Link>` : '')}}></div> */}
             <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0, 200) + (content?.length > 1 ? ' ...' : '')}}></div>
           </div>
