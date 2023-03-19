@@ -32,7 +32,7 @@ function SingleStory() {
 
         {loading ? (
             <div className='flex justify-center'>
-                <div className="w-12 h-12 rounded-full border-4 border-blue-800 animate-spin"></div>
+                <div className="w-12 h-12 rounded-full border-4 border-t-blue-800 animate-spin"></div>
             </div>
         ) : (
             <div className="md:mt-10">
@@ -43,7 +43,7 @@ function SingleStory() {
                     </Link>
                 </div>
                 <div className="rounded-2xl mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative h-96">
-                    <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-gradient-to-b from-blue-800/10 to-blue-800/5 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-brightness-50 bg-opacity-60"></div>
+                    <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-gradient-to-b from-blue-800/10 to-blue-800/5 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-brightness-75 bg-opacity-50"></div>
                     <img 
                         src={post.imageUrl} 
                         onError={(e) => {
@@ -54,7 +54,7 @@ function SingleStory() {
                         alt='postImage' 
                     />
                     <div className="p-4 absolute bottom-0 left-0 z-20">
-                        <div className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2 rounded-md">
+                        <div className="px-4 py-1 bg-blue-800 text-gray-100 tracking-wide inline-flex items-center justify-center mb-2 rounded-md">
                             {post.category}
                         </div>
                         <h2 className="text-4xl font-semibold text-gray-100 leading-tight capitalize">
