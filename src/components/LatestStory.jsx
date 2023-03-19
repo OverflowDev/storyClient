@@ -20,7 +20,7 @@ function LatestStory() {
     <div className='mt-2 w-full md:px-24 ' >
     {loading ? (
         <div className='flex justify-center'>
-            <div className="w-12 h-12 rounded-full border-4 border-blue-800 animate-spin"></div>
+            <div className="w-12 h-12 rounded-full border-4 border-t-blue-800 animate-spin"></div>
         </div>
     ) :(
         <div>
