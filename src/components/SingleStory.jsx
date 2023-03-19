@@ -31,7 +31,9 @@ function SingleStory() {
     <div className='flex justify-center md:px-24 px-6 mt-4'>
 
         {loading ? (
-            <div>Loading...</div>
+            <div className='flex justify-center'>
+                <div className="w-12 h-12 rounded-full border-4 border-blue-800 animate-spin"></div>
+            </div>
         ) : (
             <div className="md:mt-10">
                 <div className='md:ml-24'>
