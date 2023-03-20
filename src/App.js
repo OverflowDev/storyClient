@@ -19,6 +19,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import About from './pages/About';
 import SingleStory from './components/SingleStory';
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -92,6 +93,7 @@ function App() {
 
               <Route path='/about' exact element={<About />} />
               <Route path='/contact' exact element={<Contact />} />
+              <Route path='/*' exact element={<NotFound />} />
 
               {/* Auth */}
               <Route 
