@@ -21,6 +21,7 @@ function About() {
         <div className="flex flex-col">
           <h2 className="text-xl font-semibold">Team management</h2>
           <p className="text-neutral-600">AskTales</p>
+          
         </div>
       </div>
     </div>
