@@ -17,7 +17,7 @@ function LatestStory() {
     if(error) return null
 
   return (
-    <div className='mt-2 w-full md:px-24 ' >
+    <div className='mt-2 ' >
     {loading ? (
         <div className='flex justify-center'>
             <div className="w-12 h-12 rounded-full border-4 border-t-blue-800 animate-spin"></div>
@@ -33,7 +33,7 @@ function LatestStory() {
                                 <div className='py-2' >
                                     <div className='flex justify-center'>
 
-                                        <div className="rounded-xl border border-blue-500 p-5 shadow-md md:w-9/12 w-11/12 bg-white hover:bg-gray-50">
+                                        <div className="rounded-xl border border-blue-500 p-5 shadow-md lg:w-9/12 md:w-11/12 w-11/12 bg-white hover:bg-gray-50">
                                         
                                             <div className="flex w-full items-center justify-between border-b pb-3">
                                                 <div className="flex items-center space-x-3">
