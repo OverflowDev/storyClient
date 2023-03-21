@@ -1,6 +1,8 @@
-import React from 'react'
+import {useContext} from 'react'
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+
+import AuthContext from '../context/AuthContext';
 
 import { useQuery } from '@apollo/client'
 
@@ -8,8 +10,9 @@ import moment from 'moment/moment';
 
 import {FETCH_POST_QUERY} from '../graphql/posts'
 
-
 function SingleStory() {
+
+    const {user} = useContext(AuthContext)
 
     const param = useParams()
     const postId = param.postId
@@ -23,6 +26,8 @@ function SingleStory() {
     const post = data && data.getPost
 
     const paragraphs = post?.content.split("\n\n")
+
+    const content = post?.content.substr(0, 900) + (post?.content.length > 900 ? (<div>Read more</div>) : '')
 
     if(error) console.log(error)
 
@@ -64,7 +69,7 @@ function SingleStory() {
                             {post.chapter}
                         </h2>
                         <div className="flex mt-3">
-                            <img src="https://i.pravatar.cc/32" className="h-10 w-10 rounded-full mr-2 object-cover" alt='img' />
+                            <img src="https://www.pngkey.com/png/full/72-729716_user-avatar-png-graphic-free-download-icon.png" className="h-10 w-10 rounded-full mr-2 object-cover" alt='img' />
                             <div>
                                 <p className="font-semibold text-gray-200 text-sm uppercase"> {post.username} </p>
                                 <p className="font-semibold text-gray-400 text-xs"> • {moment(post.createdAt).fromNow(true)} </p>
@@ -72,17 +77,32 @@ function SingleStory() {
                         </div>
                     </div>
                 </div>
-
-                <div className="px-4 text-center lg:px-24 mt-12 text-gray-700 flex justify-center w-screen mx-auto text-lg leading-relaxed">
-                    <p className="pb-6">
-                        {paragraphs.map((paragraph, index) => (
-                            <div key={index} className="mb-4">
-                                <p>{paragraph}</p>
+                {!user ? (
+                    <div className="px-4 text-center lg:px-24 mt-12 text-gray-700 flex justify-center w-screen mx-auto text-lg leading-relaxed">
+                        <p className="pb-6">
+                            <div className="mb-4 tracking-wide">
+                                <p dangerouslySetInnerHTML={{__html: content}}
+                                >
+                                </p>
+                                <div className='mt-3'>
+                                    {post?.content.length > 1 && (
+                                        <Link to='/login' className='py-2 px-4 border rounded-md border-blue-700 bg-transparent hover:bg-blue-400 hover:border-none capitalize' >Login to read more</Link>
+                                    )}
+                                </div>
                             </div>
-                        ))}
-                    </p>
-
-                </div>
+                        </p>
+                    </div>
+                ) : (
+                    <div className="px-4 text-center lg:px-24 mt-12 text-gray-700 flex justify-center w-screen mx-auto text-lg leading-relaxed">
+                        <p className="pb-6">
+                            {paragraphs.map((paragraph, index) => (
+                                <div key={index} className="mb-4 tracking-wide">
+                                    <p>{paragraph}</p>
+                                </div>
+                            ))}
+                        </p>
+                    </div>
+                )}
             </div>
         )}
 

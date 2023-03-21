@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { useMutation } from '@apollo/client'
 
@@ -137,6 +137,13 @@ return (
                                 </div>
                             </div>
                         </form>
+
+                        {/* sign up  */}
+                        <div className='flex space-x-3 justify-center py-2'>
+                            Already have an account? <span className='text-purple-700'>
+                            <Link to='/login'>Login</Link>
+                            </span>
+                        </div>
 
                         {/* Errors */}
                         <div>

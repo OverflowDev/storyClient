@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { useMutation } from '@apollo/client'
 import { toast } from 'react-hot-toast'
@@ -104,13 +104,19 @@ function Login() {
                     />
                 </div>
                 {/* Button  */}
-                <div className="mb-4 flex justify-center">
+                <div className="mb-1 flex justify-center">
                     <button type='submit' className="mb-2 mx-16 rounded-md py-2 px-24 bg-blue-400 hover:bg-blue-500">
                       {loading ? 'Loading...' : 'Login'}
                     </button>
                 </div>
               </div>
           </form>
+          {/* sign up  */}
+          <div className='flex space-x-3 justify-center py-2'>
+            No account? <span className='text-purple-700'>
+              <Link to='/register'>Register</Link>
+            </span>
+          </div>
 
           {/* Errors */}
           <div>

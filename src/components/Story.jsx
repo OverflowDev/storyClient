@@ -31,7 +31,7 @@ function Story({post}) {
           
           <div className="flex w-full items-center justify-between border-b pb-3">
             <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
+              <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://www.pngkey.com/png/full/72-729716_user-avatar-png-graphic-free-download-icon.png')]"></div>
               <div className="text-lg font-bold text-slate-700 capitalize">{name}</div>
             </div>
             <div className="flex items-center space-x-8">
@@ -41,7 +41,7 @@ function Story({post}) {
 
           <div className="mt-4 mb-6">
             <Link to={`/story/${id}`} className="mb-3 text-xl font-bold hover:text-blue-500 uppercase">{title}</Link>
-            <div className="mb-3 text-md font-semibold capitalize text-blue-500">{chapter}</div>
+            <div className="mb-3 text-md font-semibold uppercase text-blue-500">{chapter}</div>
             {/* <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0,25) + (content?.length > 1 ? `<Link>Read More</Link>` : '')}}></div> */}
             <div className="text-sm text-neutral-600" dangerouslySetInnerHTML={{__html: content?.substr(0, 200) + (content?.length > 1 ? ' ...' : '')}}></div>
           </div>
