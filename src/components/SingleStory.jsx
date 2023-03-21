@@ -27,7 +27,7 @@ function SingleStory() {
 
     const paragraphs = post?.content.split("\n\n")
 
-    const content = post?.content.substr(0, 900) + (post?.content.length > 900 ? (<div>Read more</div>) : '')
+    const content = post?.content.substr(0, 900) + (post?.content.length > 900 ? '...' : '')
 
     if(error) console.log(error)
 
