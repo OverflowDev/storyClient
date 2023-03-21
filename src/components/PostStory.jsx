@@ -197,43 +197,46 @@ if (categoriesError) return <p>Error loading categories.</p>;
             ></textarea>
           </div>
 
-           {/* Author  */}
-           <div className="mb-5">
-            <label
-              htmlFor="title"
-              className="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Author
-            </label>
-            <input
-              required
-              name='author'
-              onChange={onChange}
-              value={formData.author}
-              type="text"
-              placeholder="Author"
-              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
+          <div className="flex items-center gap-x-3">
+            {/* Author  */}
+            <div className="mb-5">
+              <label
+                htmlFor="title"
+                className="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Author
+              </label>
+              <input
+                required
+                name='author'
+                onChange={onChange}
+                value={formData.author}
+                type="text"
+                placeholder="Author"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
+
+            {/* Chapter  */}
+            <div className="mb-5">
+              <label
+                htmlFor="title"
+                className="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Chapter
+              </label>
+              <input
+                required
+                name='chapter'
+                onChange={onChange}
+                value={formData.chapter}
+                type="text"
+                placeholder="Chapter"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
           </div>
 
-           {/* Chapter  */}
-           <div className="mb-5">
-            <label
-              htmlFor="title"
-              className="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Chapter
-            </label>
-            <input
-              required
-              name='chapter'
-              onChange={onChange}
-              value={formData.chapter}
-              type="text"
-              placeholder="Chapter"
-              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
 
           {/* Image  */}
           <div className="mb-6 ">

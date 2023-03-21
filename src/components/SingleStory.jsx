@@ -62,10 +62,13 @@ function SingleStory() {
                         <div className="px-4 py-1 bg-blue-800 text-gray-100 tracking-wide inline-flex items-center justify-center mb-2 rounded-md">
                             {post.category}
                         </div>
-                        <h2 className="text-4xl font-semibold text-gray-100 leading-tight capitalize">
+                        <h2 className="text-4xl font-semibold text-gray-100 leading-tight uppercase">
                             {post.title}
                         </h2>
-                        <h2 className="text-4xl font-semibold text-gray-100 leading-tight capitalize">
+                        <h2 className="text-sm font-semibold text-blue-200 leading-tight uppercase">
+                            By: {post.author}
+                        </h2>
+                        <h2 className="text-lg font-semibold text-gray-100 leading-tight capitalize">
                             {post.chapter}
                         </h2>
                         <div className="flex mt-3">
