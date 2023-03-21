@@ -17,16 +17,16 @@ const [errors, setErrors] = useState({})
 const navigate = useNavigate();
 
 const [formData, setFormData] = useState({
-    name: '',
     username: '',
     password: '',
     confirmPassword: '',
 })
 
 const onChange = (e) => {
+    const { name, value } = e.target
     setFormData({
-    ...formData,
-    [e.target.name]: e.target.value
+      ...formData,
+      [name]: name === 'username' ? value.toLowerCase() : value
     })
 }
 
@@ -78,18 +78,6 @@ return (
 
                         <form onSubmit={handleSubmit}>
                             <div className="py-4 px-8">
-                                <div className="mb-4">
-                                    <label className="block text-gray-800 text-sm font-bold mb-2">Name:</label>
-                                    <input 
-                                        className=" border rounded w-full py-2 px-3 text-gray-800" 
-                                        type="text"
-                                        name="name" 
-                                        value={formData.name}
-                                        // error={errors.username ? true : false}
-                                        onChange={onChange}
-                                        placeholder="Name" 
-                                    />
-                                </div>
                                 <div className="mb-4">
                                     <label className="block text-gray-800 text-sm font-bold mb-2">Username:</label>
                                     <input 

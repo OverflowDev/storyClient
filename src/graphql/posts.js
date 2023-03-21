@@ -7,7 +7,7 @@ export const FETCH_POSTS_QUERY = gql`
             title
             content
             chapter
-            name
+            author
             username
             category
             imageUrl
@@ -22,7 +22,7 @@ export const FETCH_POST_QUERY = gql`
             title
             content
             chapter
-            name
+            author
             username
             category
             imageUrl
@@ -64,7 +64,7 @@ export const CREATE_POST_MUTATION = gql`
             content
             chapter
             category
-            name
+            author
             username
             imageUrl
             createdAt

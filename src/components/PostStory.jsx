@@ -18,6 +18,7 @@ function PostStory({visible, onClose}) {
     title: '',
     content: '',
     chapter: '',
+    author: '',
     category: '',
     image: ''
   })
@@ -59,7 +60,7 @@ const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
                 title
                 content
                 chapter
-                name
+                author
                 category
                 imageUrl
               }
@@ -80,11 +81,12 @@ const [createPost, {error, loading}] = useMutation(CREATE_POST_MUTATION, {
 const onSubmit = async (e) => {
   e.preventDefault();
   try {
-    const { title, content,chapter, category, image } = formData
+    const { title, content,chapter, category,author, image } = formData
     await createPost({
       variables: { postInput:{
         title,
         content,
+        author,
         chapter,
         category,
         image
@@ -95,6 +97,7 @@ const onSubmit = async (e) => {
     setFormData({
       title: '',
       content: '',
+      author:'',
       chapter: '',
       category: '',
       image: ''
@@ -192,6 +195,25 @@ if (categoriesError) return <p>Error loading categories.</p>;
               placeholder="Your Story"
               className="w-full rounded py-3 px-[14px] text-gray-800 text-base border border-gray-700 resize-none outline-none focus-visible:shadow-none focus:border-primary"
             ></textarea>
+          </div>
+
+           {/* Author  */}
+           <div className="mb-5">
+            <label
+              htmlFor="title"
+              className="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Author
+            </label>
+            <input
+              required
+              name='author'
+              onChange={onChange}
+              value={formData.author}
+              type="text"
+              placeholder="Author"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
           </div>
 
            {/* Chapter  */}

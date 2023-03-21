@@ -2,21 +2,18 @@ import { gql } from "@apollo/client";
 
 export const REGISTER_USER = gql`
     mutation register(
-        $name: String!
         $username: String!
         $password: String!
         $confirmPassword: String!
     ) {
         register(
             registerInput: {
-                name: $name
                 username: $username
                 password: $password
                 confirmPassword: $confirmPassword
             }
         ) {
             id
-            name
             username
             createdAt
             token

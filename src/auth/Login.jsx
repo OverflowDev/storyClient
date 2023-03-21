@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 import { useMutation } from '@apollo/client'
 import { toast } from 'react-hot-toast'
@@ -11,6 +11,7 @@ import {LOGIN_USER} from '../graphql/users'
 
 function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {login} = useContext(AuthContext)
   const [errors, setErrors] = useState({})
@@ -37,7 +38,7 @@ function Login() {
       const token = data.login.token;
       login(token)
       // Redirect after login 
-      navigate('/')
+      navigate(location)
 
       toast.success("Login successful!")
     },

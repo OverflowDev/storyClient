@@ -37,7 +37,8 @@ function LatestStory() {
                                         
                                             <div className="flex w-full items-center justify-between border-b pb-3">
                                                 <div className="flex items-center space-x-3">
-                                                    <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
+                                                    <img src="https://www.pngkey.com/png/full/72-729716_user-avatar-png-graphic-free-download-icon.png" className="h-10 w-10 rounded-full mr-2 object-cover" alt='img' />
+                                                    {/* <div className="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://www.pngkey.com/png/full/72-729716_user-avatar-png-graphic-free-download-icon.png')]"></div> */}
                                                     <div className="text-lg font-bold text-slate-700 capitalize">{post.name}</div>
                                                 </div>
                                                 <div className="flex items-center space-x-8">
